@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Все",
+      "isActive": true
+    },
+    {
+      "id": "2",
+      "name": "Мясные",
+      "isActive": false
+    },
+    {
+      "id": "3",
+      "name": "Вегетарианская",
+      "isActive": false
+    },
+    {
+      "id": "4",
+      "name": "Гриль",
+      "isActive": false
+    },
+    {
+      "id": "5",
+      "name": "Острые",
+      "isActive": false
+    },
+    {
+      "id": "6",
+      "name": "Закрытые",
+      "isActive": false
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcKUn39X6TtBoWMhSsYSulo_qqd_K82T9QFg&s",
+      "title": "Чизбургер-пицца",
+      "typeId": 0,
+      "sizeId": 2,
+      "price": "395",
+      "savedCount": 0,
+      "categoryId": 1
+    },
+    {
+      "id": "2",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcKUn39X6TtBoWMhSsYSulo_qqd_K82T9QFg&s",
+      "title": "Сырная",
+      "typeId": 1,
+      "sizeId": 3,
+      "price": "450",
+      "savedCount": 0,
+      "categoryId": 2
+    },
+    {
+      "id": "3",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcKUn39X6TtBoWMhSsYSulo_qqd_K82T9QFg&s",
+      "title": "Креветки по-азиатски",
+      "typeId": 1,
+      "sizeId": 1,
+      "price": "290",
+      "savedCount": 0,
+      "categoryId": 3
+    }
+  ]
+}
