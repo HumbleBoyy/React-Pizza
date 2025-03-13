@@ -1,14 +1,13 @@
 "use client"
 import { instance } from "@/hooks/instance"
-import { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 
 
-export const getRequest = (api:string):any => {
-    const [data, setData] = useState<[]>([])
+export const getRequest = (api:string, queryKey:string) => {
+       const {data, isLoading} = useQuery({
+         queryKey:[queryKey],
+         queryFn:() => instance().get(api).then(res => res.data)
+       })
 
-    useEffect(()=>{
-        instance().get(api).then(res => setData(res.data))
-    })
-
-    return data
+    return {data, isLoading}
 }
