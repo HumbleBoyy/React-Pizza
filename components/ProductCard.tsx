@@ -3,10 +3,15 @@ import { PlusIcon } from '@/assets'
 import { ProductType } from '@/types/ProductType'
 import ButtonUi from '@/ui/ButtonUi'
 import Image from 'next/image'
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const ProductCard:FC<{item:ProductType}> = ({item}) => {
+  const [orderCount, setOrderCount] = useState<number>(0)
+
+  const handleOrderBtnClick = (obj:ProductType) => {
+    setOrderCount(orderCount + 1)
+  }
   return (
     <div className='w-[280px] flex flex-col gap-2'>
        <Image className='w-[220px] h-[220px] mb-[11px] mx-auto' src={item.img} priority alt={item.title} width={220} height={220}/>
@@ -28,7 +33,7 @@ const ProductCard:FC<{item:ProductType}> = ({item}) => {
        </div>
        <div className='flex items-center justify-between'>
          <strong className='font-bold text-[22px]'>от {item.price} ₽</strong>
-         <ButtonUi extraClass='!text-[16px] !rounded-[30px] !p-[10px] !bg-[#EB5A1E] border-2 border-[#EB5A1E]' bgColor={false} icon={<PlusIcon/>} iconPosition={"left"}>Добавить</ButtonUi>
+         <ButtonUi onClick={()=> handleOrderBtnClick(item)} extraClass={`!text-[16px] !rounded-[30px] !p-[10px] ${orderCount !== 0 ? "!bg-transparent text-[#EB5A1E] border-2 border-[#EB5A1E]" : "!bg-[#EB5A1E] border-2 border-[#EB5A1E]"}`} bgColor={false} icon={<PlusIcon/>} iconPosition={"left"}>Добавить {orderCount !== 0 && <span className='w-[22px] h-[22px] rounded-[50%] bg-[#EB5A1E] text-white'>{orderCount}</span>}</ButtonUi>
        </div>
     </div>
   )
