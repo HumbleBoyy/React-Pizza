@@ -36,7 +36,7 @@ const Categories = () => {
               <p className='font-bold text-[14px]'>Сортировка по:</p>
             </div>
             <PopoverTrigger>
-               <strong className='font-semibold text-[14px] text-[#FE5F1E] border-b-2 border-dotted border-[#FE5F1E] leading-[100%]'>{sortTitle}</strong>
+               <strong className='font-semibold text-[14px] text-[#FE5F1E] inline-block text-start py-[3px] !w-[100px] border-b-2 border-dotted border-[#FE5F1E] leading-[100%]'>{sortTitle}</strong>
             </PopoverTrigger>
             <PopoverContent className='flex flex-col !p-0 items-center justify-center w-[150px] '>
                 <button onClick={() => setSortTitle("популярности")} className='w-full hover:bg-[#FE5F1E0D] hover:text-[#FE5F1E] p-[10px] text-start cursor-pointer text-[14px]'>популярности</button>
