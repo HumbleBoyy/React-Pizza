@@ -5,6 +5,12 @@ import { getRequest } from '@/service/getRequest'
 import { CategoryType } from '@/types/CategoriesType'
 import ButtonUi from '@/ui/ButtonUi'
 import React, { useEffect, useState } from 'react'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
 
 const Categories = () => {
   const {data, isLoading} = getRequest("/categories", "category")
