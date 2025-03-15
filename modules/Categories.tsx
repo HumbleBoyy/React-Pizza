@@ -14,6 +14,7 @@ import {
 
 const Categories = () => {
   const {data, isLoading} = getRequest("/categories", "category")
+  const [sortTitle, setSortTitle] = useState<"популярности" | "по цене" | "по алфавиту">("популярности")
   const [categories, setCategories] = useState(data)
 
 
@@ -28,13 +29,22 @@ const Categories = () => {
         <div className='flex items-center gap-[10px]'>
            {isLoading ? "Loading...." : categories?.map((item:CategoryType)=> <ButtonUi key={item.id} onClick={()=> handleCategories(item)} extraClass={`rounded-[50px] hover:bg-transparent ${item.isActive ? "!bg-black" : "bg-[#F9F9F9] text-black"}`}>{item.name}</ButtonUi>)}
         </div>
-        <div className='flex items-center gap-1'>
+       <Popover>
+       <div className='flex items-center gap-1'>
             <div className='flex items-center gap-2'>
               <ArrowIcon/>
               <p className='font-bold text-[14px]'>Сортировка по:</p>
             </div>
-            <strong className='font-semibold text-[14px] text-[#FE5F1E]'>популярности</strong>
+            <PopoverTrigger>
+               <strong className='font-semibold text-[14px] text-[#FE5F1E] border-b-2 border-dotted border-[#FE5F1E] leading-[100%]'>{sortTitle}</strong>
+            </PopoverTrigger>
+            <PopoverContent className='flex flex-col !p-0 items-center justify-center w-[150px] '>
+                <button onClick={() => setSortTitle("популярности")} className='w-full hover:bg-[#FE5F1E0D] hover:text-[#FE5F1E] p-[10px] text-start cursor-pointer text-[14px]'>популярности</button>
+                <button onClick={() => setSortTitle("по цене")} className='w-full hover:bg-[#FE5F1E0D] hover:text-[#FE5F1E] p-[10px] text-start cursor-pointer text-[14px]'>по цене</button>
+                <button onClick={() => setSortTitle("по алфавиту")} className='w-full hover:bg-[#FE5F1E0D] hover:text-[#FE5F1E] p-[10px] text-start cursor-pointer text-[14px]'>по алфавиту</button>
+            </PopoverContent>
         </div>
+       </Popover>
     </div>
   )
 }
