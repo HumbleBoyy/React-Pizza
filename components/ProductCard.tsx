@@ -5,13 +5,16 @@ import ButtonUi from '@/ui/ButtonUi'
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useDispatch } from 'react-redux'
+import { saveOrderProduct } from '@/store/orderSlice'
 
 const ProductCard:FC<{item:ProductType}> = ({item}) => {
   const [orderCount, setOrderCount] = useState<number>(0)
+  const dispatch = useDispatch()
 
   const handleOrderBtnClick = (obj:ProductType) => {
     setOrderCount(orderCount + 1)
-    console.log(obj)
+    dispatch(saveOrderProduct(obj))
   }
   return (
     <div className='w-[280px] flex flex-col gap-2'>
