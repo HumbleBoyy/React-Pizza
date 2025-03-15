@@ -1,5 +1,6 @@
 import Categories from "@/modules/Categories";
 import Header from "@/modules/Header";
+import Products from "@/modules/Products";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <Header/>
       <div  className="w-full h-[1px] bg-[#ededed]"/>
       <Categories/>
+      <Products/>
    </div>
   );
 }
