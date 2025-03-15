@@ -11,6 +11,7 @@ const ProductCard:FC<{item:ProductType}> = ({item}) => {
 
   const handleOrderBtnClick = (obj:ProductType) => {
     setOrderCount(orderCount + 1)
+    console.log(obj)
   }
   return (
     <div className='w-[280px] flex flex-col gap-2'>
