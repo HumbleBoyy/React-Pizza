@@ -7,5 +7,6 @@ import { ReactNode } from "react"
     iconPosition?:"left" | "right"
     children:ReactNode,
     bgColor?:boolean,
-    extraClass?:string
+    extraClass?:string,
+    onClick?:React.MouseEventHandler<HTMLButtonElement>
  }

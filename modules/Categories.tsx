@@ -7,7 +7,7 @@ import React from 'react'
 
 const Categories = () => {
   const {data:categories, isLoading} = getRequest("/categories", "category")
-  console.log(categories)
+ 
   return (
     <div className='flex items-center justify-between'>
         <div className='flex items-center gap-[10px]'>
