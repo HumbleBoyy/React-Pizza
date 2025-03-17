@@ -13,10 +13,18 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     saveOrderProduct: (state:OrderType, action:PayloadAction<ProductType>):OrderType | any => {
-      
-       return {
+      const isThere = state.orderList.some(item => item.id === action.payload.id && item.sizeId === action.payload.sizeId && item.typeId === action.payload.typeId)
+      if(isThere){
+        const result = state.orderList.map((item:ProductType)=> item.id === action.payload.id ? action.payload : item)
+        return{
+          orderList:result
+        }
+      }else{
+        return {
           orderList:[...state.orderList, action.payload]    
        }
+      }
+       
     }
   },
 })

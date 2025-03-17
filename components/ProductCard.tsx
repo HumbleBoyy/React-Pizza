@@ -10,12 +10,15 @@ import { saveOrderProduct } from '@/store/orderSlice'
 
 const ProductCard:FC<{item:ProductType}> = ({item}) => {
   const [orderCount, setOrderCount] = useState<number>(0)
+  const [typeId, setTypeId] = useState<0 | 1> (0)
+  const [sizeId, setSizeId] = useState<0 | 1 | 2> (0)
   const dispatch = useDispatch()
 
   const handleOrderBtnClick = (obj:ProductType) => {
-    const newOrderCount = {...obj, savedCount:0}
     setOrderCount(orderCount + 1)
-    dispatch(saveOrderProduct(obj))
+    const newOrderCount = {...obj, savedCount:orderCount + 1, typeId, sizeId}
+    setOrderCount(orderCount + 1)
+    dispatch(saveOrderProduct(newOrderCount))
   }
   return (
     <div className='w-[280px] flex flex-col gap-2'>
@@ -24,15 +27,15 @@ const ProductCard:FC<{item:ProductType}> = ({item}) => {
        <div className='w-[280px] py-2 bg-[#F3F3F3]  rounded-md'>
        <Tabs defaultValue="тонкое" className="!w-[200px] !py-2">
         <TabsList>
-          <TabsTrigger value="тонкое" className='!w-[130px]  text-[15px] font-bold cursor-pointer p-5'>тонкое</TabsTrigger>
-          <TabsTrigger value="традиционное" className='!w-[130px] text-[15px] font-bold cursor-pointer p-5'>традиционное</TabsTrigger>
+          <TabsTrigger onClick={()=> setTypeId(0)} value="тонкое" className='!w-[130px]  text-[15px] font-bold cursor-pointer p-5'>тонкое</TabsTrigger>
+          <TabsTrigger onClick={()=> setTypeId(1)} value="традиционное" className='!w-[130px] text-[15px] font-bold cursor-pointer p-5'>традиционное</TabsTrigger>
         </TabsList>
       </Tabs>
       <Tabs defaultValue="26 см." className="!w-[200px] !py-2">
         <TabsList>
-          <TabsTrigger value="26 см." className='!w-[85px]  text-[15px] font-bold cursor-pointer p-5'>26 см.</TabsTrigger>
-          <TabsTrigger value="30 см." className='!w-[85px] text-[15px] font-bold cursor-pointer p-5'>30 см.</TabsTrigger>
-          <TabsTrigger value="40 см." className='!w-[85px] text-[15px] font-bold cursor-pointer p-5'>40 см.</TabsTrigger>
+          <TabsTrigger onClick={()=> setSizeId(0)} value="26 см." className='!w-[85px]  text-[15px] font-bold cursor-pointer p-5'>26 см.</TabsTrigger>
+          <TabsTrigger onClick={()=> setSizeId(1)} value="30 см." className='!w-[85px] text-[15px] font-bold cursor-pointer p-5'>30 см.</TabsTrigger>
+          <TabsTrigger onClick={()=> setSizeId(2)} value="40 см." className='!w-[85px] text-[15px] font-bold cursor-pointer p-5'>40 см.</TabsTrigger>
         </TabsList>
       </Tabs>
        </div>
