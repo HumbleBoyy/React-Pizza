@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 
 const Header = () => {
   const orderCount = useSelector(state => state)
-  console.log(orderCount)
   return (
     <div className='w-full flex justify-between items-center py-5'>
       <Image src={MainLogo} alt='ReactPzza'/>

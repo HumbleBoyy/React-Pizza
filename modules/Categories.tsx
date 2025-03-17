@@ -4,22 +4,28 @@ import { ArrowIcon } from '@/assets'
 import { getRequest } from '@/service/getRequest'
 import { CategoryType } from '@/types/CategoriesType'
 import ButtonUi from '@/ui/ButtonUi'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Context } from '@/context/context'
 
 
 const Categories = () => {
   const {data, isLoading} = getRequest("/categories", "category")
   const [sortTitle, setSortTitle] = useState<"популярности" | "по цене" | "по алфавиту">("популярности")
   const [categories, setCategories] = useState(data)
-
+  const {setCategoryId} = useContext(Context)
 
   const handleCategories = (obj:CategoryType) => {
-     setCategories(categories?.map((item:CategoryType)=> item.id === obj.id ? {...obj, isActive:true} : {...item, isActive:false}))
+     if(obj.id === "0"){
+      setCategoryId(null)
+     }else{
+      setCategoryId(obj.id)
+     }
+     setCategories(categories?.map((item:CategoryType)=> item.id === obj.id ? {...obj, isActive:true} : {...item, isActive:false}));
   }
   useEffect(()=> {
     setCategories(data)
