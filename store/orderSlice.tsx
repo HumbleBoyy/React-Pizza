@@ -13,6 +13,7 @@ export const orderSlice = createSlice({
   initialState,
   reducers: {
     saveOrderProduct: (state:OrderType, action:PayloadAction<ProductType>):OrderType | any => {
+      
        return {
           orderList:[...state.orderList, action.payload]    
        }

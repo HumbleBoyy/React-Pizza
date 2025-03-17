@@ -13,6 +13,7 @@ const ProductCard:FC<{item:ProductType}> = ({item}) => {
   const dispatch = useDispatch()
 
   const handleOrderBtnClick = (obj:ProductType) => {
+    const newOrderCount = {...obj, savedCount:0}
     setOrderCount(orderCount + 1)
     dispatch(saveOrderProduct(obj))
   }
