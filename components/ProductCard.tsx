@@ -5,18 +5,20 @@ import ButtonUi from '@/ui/ButtonUi'
 import Image from 'next/image'
 import React, { FC, useState } from 'react'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveOrderProduct } from '@/store/orderSlice'
 
 const ProductCard:FC<{item:ProductType}> = ({item}) => {
   const [orderCount, setOrderCount] = useState<number>(0)
   const [typeId, setTypeId] = useState<0 | 1> (0)
   const [sizeId, setSizeId] = useState<0 | 1 | 2> (0)
+  const orderList = useSelector((state:{orderList:ProductType[]})=> state.orderList)
   const dispatch = useDispatch()
 
   const handleOrderBtnClick = (obj:ProductType) => {
+    const isThere = orderList.some(item => item.id === obj.id && item.sizeId === sizeId && item.typeId === typeId)
     setOrderCount(orderCount + 1)
-    const newOrderCount = {...obj, savedCount:orderCount + 1, typeId, sizeId}
+    const newOrderCount = {...obj, savedCount: isThere ? orderCount + 1 : 1, typeId, sizeId}
     setOrderCount(orderCount + 1)
     dispatch(saveOrderProduct(newOrderCount))
   }
